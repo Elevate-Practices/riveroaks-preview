@@ -142,12 +142,13 @@ a:hover>.more svg,.more:hover svg{transform:translateX(3px)}
 .hero__rating{display:flex;align-items:center;gap:10px;margin:24px 0 0;font-size:15px;color:rgba(255,255,255,.86)}
 .stars{display:inline-flex;gap:2px;color:#E2A93B}
 .stars svg{width:16px;height:16px}
-body.home .hdr{position:absolute;left:0;right:0;top:0;background:transparent;border-bottom:0;transition:background .25s,border-color .25s}
+body.home .hdr{position:fixed;left:0;right:0;top:0;background:transparent;border-bottom:1px solid transparent;transition:background .2s,border-color .2s,box-shadow .2s}
 body.home .hdr:not(.is-solid){color:#fff}
 body.home .hdr:not(.is-solid) .nav>a,body.home .hdr:not(.is-solid) .has-mega>a,body.home .hdr:not(.is-solid) .hdr__tel,body.home .hdr:not(.is-solid) .lang,body.home .hdr:not(.is-solid) .burger{color:#fff}
 body.home .hdr:not(.is-solid) .hdr__tel svg{color:#fff}
 body.home .hdr:not(.is-solid) .hdr__logo img{filter:brightness(0) invert(1)}
-body.home .hdr.is-solid{position:fixed;background:#fff;border-bottom:1px solid var(--line)}
+body.home .hdr.is-solid{background:#fff;border-bottom-color:var(--line);box-shadow:0 2px 14px rgba(14,59,43,.08)}
+body.home .hdr .nav>a,body.home .hdr .has-mega>a,body.home .hdr .hdr__tel,body.home .hdr .lang,body.home .hdr .burger,body.home .hdr .hdr__logo img{transition:color .2s,filter .2s}
 body.home.hdr-solid{padding-top:0}
 
 /* Ken Burns on every photo (site-wide, Chris Oct 19 2026) */

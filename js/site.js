@@ -19,6 +19,6 @@
 (function () {
   var hdr = document.querySelector('body.home .hdr'), hero = document.querySelector('.hero');
   if (!hdr || !hero) return;
-  function tick() { hdr.classList.toggle('is-solid', window.scrollY > hero.offsetHeight - hdr.offsetHeight); }
+  function tick() { hdr.classList.toggle('is-solid', window.scrollY > 24); }
   addEventListener('scroll', tick, { passive: true }); tick();
 })();
