@@ -74,44 +74,50 @@ a:hover>.more svg,.more:hover svg{transform:translateX(3px)}
 .hdr{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}
 .hdr__in{max-width:1328px;margin:0 auto;padding:0 28px;height:var(--hdr);display:flex;align-items:center;gap:28px}
 .hdr__logo img{height:50px;width:auto}
-.nav{display:flex;align-items:center;gap:24px;margin-left:auto}
-.nav>a,.nav__btn{font:600 15.5px/1 var(--f);color:var(--ink);text-decoration:none;background:none;border:0;padding:10px 0;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
-.nav__btn svg{width:16px;height:16px}
-.nav>a:hover,.nav__btn:hover,.nav>a[aria-current]{color:var(--green)}
-.nav__item{position:relative}
-.mega{position:absolute;top:calc(100% + 18px);left:50%;transform:translateX(-45%);width:min(940px,92vw);background:#fff;border-radius:var(--r);
-  box-shadow:0 30px 80px rgba(14,59,43,.16);padding:28px 30px;opacity:0;visibility:hidden;transition:opacity .18s,visibility .18s}
-.mega.is-open{opacity:1;visibility:visible}
-.mega__in{display:grid;grid-template-columns:1.6fr 1fr 1fr .8fr;gap:22px}
-.mega__in>div:first-child ul{columns:2;column-gap:20px}
-.mega__h{margin:0 0 8px;font-weight:700}
-.mega__h a{color:var(--ink);text-decoration:none}
+.nav{display:flex;align-items:center;gap:24px;margin-left:auto;flex-wrap:nowrap}
+.nav>a,.has-mega>a{font:600 15.5px/1 var(--f);color:var(--ink);text-decoration:none;background:none;border:0;padding:10px 0;cursor:pointer;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.nav>a:hover,.has-mega>a:hover,.nav>a[aria-current],.has-mega>a[aria-current]{color:var(--green)}
+/* Services mega-menu: full-width solid white panel under the header, hover or :focus-within (Chris, Oct 19 2026) */
+.has-mega{position:static}
+.has-mega>a svg{width:15px;height:15px;opacity:.65;transition:transform .2s}
+.mega{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 30px 60px rgba(14,59,43,.14);
+  opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility 0s .18s}
+.has-mega:hover .mega,.has-mega:focus-within .mega{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.has-mega:hover>a svg,.has-mega:focus-within>a svg{transform:rotate(180deg)}
+.mega__in{max-width:1328px;margin:0 auto;padding:30px 28px 36px;display:grid;grid-template-columns:2.2fr 1fr 1fr .7fr 1.15fr;gap:28px;align-items:start}
+.mega__col:first-child ul{columns:2;column-gap:22px}
+.mega__h{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-weight:700;font-size:15.5px;color:var(--ink);white-space:nowrap}
+.mega__h a{color:inherit;text-decoration:none}
+.mega__h a:hover{color:var(--green)}
+.mega__ic{width:34px;height:34px;border-radius:12px;background:var(--tint);color:var(--green);display:inline-flex;align-items:center;justify-content:center;flex:none}
+.mega__ic svg{width:18px;height:18px}
 .mega ul{list-style:none;margin:0;padding:0}
-.mega li a{display:block;padding:5px 0;color:var(--ink2);text-decoration:none;font-size:14.5px}
-.mega li a:hover{color:var(--green)}
-.mega__all{grid-column:1/-1;border-top:1px solid var(--line);padding-top:14px}
-.mega__all a{font-weight:700;text-decoration:none;display:inline-flex;gap:6px;align-items:center}
-.mega__all svg{width:16px;height:16px}
+.mega li{break-inside:avoid}
+.mega li a{display:block;padding:5px 0;color:var(--ink2);text-decoration:none;font-size:14.5px;line-height:1.35}
+.mega li a:hover,.mega li a[aria-current]{color:var(--green)}
+.mega__all{background:var(--tint);border-radius:var(--r);padding:24px;display:grid;align-content:start;justify-items:start;gap:12px}
+.mega__all .mega__h{margin:0;font-size:17px;white-space:normal}
+.mega__p{margin:0 0 4px;font-size:14.5px;line-height:1.5;color:var(--ink2)}
+.nav .mega .btn,.nav .mega .btn:hover{color:#fff;opacity:1;font-size:15px;padding:0 20px}   /* keep the Book text white inside the nav */
+.mega__link{font-weight:700;color:var(--green);text-decoration:none;display:inline-flex;gap:6px;align-items:center;font-size:15px;white-space:nowrap}
+.mega__link svg{width:16px;height:16px}
 .hdr__cta{display:flex;align-items:center;gap:18px}
-.lang{font:600 15px/1 var(--f);color:var(--green);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
-.hdr__tel{display:inline-flex;align-items:center;gap:7px;font:700 15.5px/1 var(--f);color:var(--ink);text-decoration:none;min-height:44px}
+.lang{font:600 15px/1 var(--f);color:var(--green);text-decoration:none;min-height:44px;display:inline-flex;align-items:center;white-space:nowrap}
+.hdr__tel{display:inline-flex;align-items:center;gap:7px;font:700 15.5px/1 var(--f);color:var(--ink);text-decoration:none;min-height:44px;white-space:nowrap}
 .hdr__tel svg{width:18px;height:18px;color:var(--green)}
 .hdr .btn{min-height:44px;padding:0 22px;font-size:15.5px}
 .burger{display:none;margin-left:auto;width:44px;height:44px;border:0;background:var(--tint);border-radius:50%;color:var(--ink);cursor:pointer;align-items:center;justify-content:center}
 .burger svg{width:22px;height:22px}
 .mnav{display:none}
+@media (max-width:1260px){.mega__in{grid-template-columns:1.25fr 1fr 1fr .7fr 1.15fr;gap:22px}.mega__col:first-child ul{columns:1}}
 @media (max-width:1200px){.hdr__tel span{display:none}.nav{gap:18px}}
 @media (max-width:1080px){
   .nav,.hdr__cta{display:none}
   .burger{display:inline-flex}
   .mnav{position:fixed;left:0;right:0;bottom:0;top:var(--hdr);background:#fff;padding:12px 24px 120px;overflow-y:auto;z-index:49}
   .mnav.is-open{display:block}
-  .mnav>a,.mnav summary{display:flex;align-items:center;justify-content:space-between;min-height:58px;border-bottom:1px solid var(--line);font:700 20px/1.2 var(--f);color:var(--ink);text-decoration:none;list-style:none;cursor:pointer}
-  .mnav summary::-webkit-details-marker{display:none}
-  .mnav summary svg{width:20px;height:20px}
-  .mnav__h{margin:18px 0 4px;font-size:13px;font-weight:700;color:var(--mute)}
-  .mnav__sub{display:block;padding:8px 0;color:var(--ink2);text-decoration:none;font-size:16.5px}
-  .mnav__svc{padding-bottom:14px}
+  .mnav>a{display:flex;align-items:center;justify-content:space-between;min-height:58px;border-bottom:1px solid var(--line);font:700 20px/1.2 var(--f);color:var(--ink);text-decoration:none}
+  .mnav>a[aria-current]{color:var(--green)}
   .mnav .lang{min-height:58px;font-size:19px}
   body.nav-open{overflow:hidden}
 }
