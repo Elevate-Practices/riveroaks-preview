@@ -14,3 +14,11 @@
     matchMedia('(min-width:1061px)').addEventListener('change', function (m) { if (m.matches) setM(false); });
   }
 })();
+
+// home: header goes solid once the hero scrolls away
+(function () {
+  var hdr = document.querySelector('body.home .hdr'), hero = document.querySelector('.hero');
+  if (!hdr || !hero) return;
+  function tick() { hdr.classList.toggle('is-solid', window.scrollY > hero.offsetHeight - hdr.offsetHeight); }
+  addEventListener('scroll', tick, { passive: true }); tick();
+})();

@@ -122,14 +122,40 @@ a:hover>.more svg,.more:hover svg{transform:translateX(3px)}
   body.nav-open{overflow:hidden}
 }
 
-/* hero: centered copy over a wide team panel */
-.hero{padding:84px 0 0;background:#fff}
+/* hero: full-bleed team photo, transparent header + copy over it (faces stay clear: copy sits low-left) */
+.hero{position:relative;min-height:min(88vh,860px);display:flex;align-items:flex-end;background:var(--deep);overflow:hidden;isolation:isolate}
+.hero .kb{position:absolute;inset:0;border-radius:0;z-index:-2}
+.hero__img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.hero__shade{position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(180deg,rgba(10,30,22,.55) 0%,rgba(10,30,22,0) 26%),
+  linear-gradient(0deg,rgba(10,30,22,.88) 0%,rgba(10,30,22,.55) 30%,rgba(10,30,22,0) 56%)}
+.hero__copy{padding-top:calc(var(--hdr) + 40px);padding-bottom:48px;color:#fff;max-width:1328px}
+.hero__copy .display{font-size:clamp(34px,4.2vw,56px);max-width:720px}
+.hero__copy .display,.hero__copy .lede{color:#fff;text-shadow:0 1px 14px rgba(0,0,0,.3)}
+.hero__copy .lede{max-width:560px;margin-top:14px;font-size:17px}
+.hero__copy .btns{margin-top:22px}
+.hero__copy .eyebrow{margin-bottom:10px}
 .hero .display{margin-top:4px}
-.hero__rating{display:flex;align-items:center;justify-content:center;gap:10px;margin:24px 0 0;font-size:15px;color:var(--mute)}
+.hero__rating{display:flex;align-items:center;gap:10px;margin:24px 0 0;font-size:15px;color:rgba(255,255,255,.86)}
 .stars{display:inline-flex;gap:2px;color:#E2A93B}
 .stars svg{width:16px;height:16px}
-.hero__media{margin-top:60px}
-.hero__img{width:100%;aspect-ratio:2.35/1;object-fit:cover;object-position:50% 42%;border-radius:32px}
+body.home .hdr{position:absolute;left:0;right:0;top:0;background:transparent;border-bottom:0;transition:background .25s,border-color .25s}
+body.home .hdr:not(.is-solid){color:#fff}
+body.home .hdr:not(.is-solid) .nav>a,body.home .hdr:not(.is-solid) .has-mega>a,body.home .hdr:not(.is-solid) .hdr__tel,body.home .hdr:not(.is-solid) .lang,body.home .hdr:not(.is-solid) .burger{color:#fff}
+body.home .hdr:not(.is-solid) .hdr__tel svg{color:#fff}
+body.home .hdr:not(.is-solid) .hdr__logo img{filter:brightness(0) invert(1)}
+body.home .hdr.is-solid{position:fixed;background:#fff;border-bottom:1px solid var(--line)}
+body.home.hdr-solid{padding-top:0}
+
+/* Ken Burns on every photo (site-wide, Chris Oct 19 2026) */
+.kb{display:block;overflow:hidden;border-radius:var(--r);line-height:0;position:relative}
+.kb>img{border-radius:0;transform-origin:50% 50%;animation:kb 22s ease-in-out infinite alternate;will-change:transform}
+.kb:nth-of-type(2n)>img{animation-direction:alternate-reverse}
+@keyframes kb{from{transform:scale(1.02) translate(0,0)}to{transform:scale(1.1) translate(-1.6%,1.2%)}}
+.hero .kb>img{animation-duration:34s;animation-name:kb-hero}
+@keyframes kb-hero{from{transform:scale(1)}to{transform:scale(1.06)}}
+.head__media .kb,.svcsplit__media .kb,.split__media .kb{border-radius:var(--r)}
+.person .kb{border-radius:var(--r)}
 
 .facts{background:#fff}
 .facts__in{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding-top:48px;padding-bottom:20px}
@@ -141,10 +167,14 @@ a:hover>.more svg,.more:hover svg{transform:translateX(3px)}
 .fact a:hover{color:var(--green)}
 
 .head{padding:72px 0 0;background:#fff}
-.head__media{margin-top:56px}
-.head__img{width:100%;aspect-ratio:2.35/1;object-fit:cover;border-radius:32px}
+.head--img{padding-bottom:0}
+.head__grid{display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
+.head--img .head__grid{grid-template-columns:1fr 1fr;gap:64px}
+.head__copy{max-width:600px}
+.head__media{margin:0}
+.head__img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:50% 30%}
 .head+.sec{padding-top:96px}
-.head:not(:has(.head__media)){padding-bottom:72px}
+.head:not(.head--img){padding-bottom:72px}
 .crumbs{padding-top:22px}
 .crumbs ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px;font-size:14px;color:var(--mute)}
 .crumbs li+li::before{content:"›";margin-right:6px;color:#B7C4BC}
@@ -294,7 +324,8 @@ a:hover>.more svg,.more:hover svg{transform:translateX(3px)}
 
 @media (max-width:1040px){
   .sec,.bilingual,.close{padding:80px 0}
-  .split,.grid-side,.sechead,.svcsplit,.bilingual__grid{grid-template-columns:1fr;gap:36px}
+  .split,.grid-side,.sechead,.svcsplit,.bilingual__grid,.head--img .head__grid{grid-template-columns:1fr;gap:36px}
+  .head__copy{max-width:none}
   .svcsplit__media,.side{position:static}
   .people{grid-template-columns:repeat(3,1fr)}
   .people--big{grid-template-columns:1fr 1fr}
@@ -307,14 +338,17 @@ a:hover>.more svg,.more:hover svg{transform:translateX(3px)}
 @media (max-width:720px){
   .in{padding:0 20px}
   .sec,.bilingual,.close{padding:64px 0}
-  .hero{padding-top:44px}
-  .hero__media{margin-top:40px;padding:0}
-  .hero__img,.head__img{aspect-ratio:4/3;border-radius:0}
-  .hero__img{object-position:50% 30%}
+  .hero{display:block;min-height:0}
+  .hero .kb{position:relative;inset:auto;aspect-ratio:4/3;z-index:0}
+  .hero__img{aspect-ratio:4/3;object-position:50% 30%}
+  .hero__shade{display:none}
+  .hero__copy{background:var(--deep);padding:36px 20px 40px}
+  body.home .hdr,body.home .hdr:not(.is-solid){position:sticky;background:#fff;border-bottom:1px solid var(--line);color:var(--ink)}
+  body.home .hdr:not(.is-solid) .nav>a,body.home .hdr:not(.is-solid) .hdr__tel,body.home .hdr:not(.is-solid) .lang,body.home .hdr:not(.is-solid) .burger{color:var(--ink)}
+  body.home .hdr:not(.is-solid) .hdr__logo img{filter:none}
+  body.home .hdr:not(.is-solid) .hdr__tel svg{color:var(--green)}
   .head{padding-top:40px}
-  .head:not(:has(.head__media)){padding-bottom:48px}
-  .head__media{margin-top:36px}
-  .head .in--wide{padding:0}
+  .head:not(.head--img){padding-bottom:48px}
   .head+.sec{padding-top:64px}
   .tiles,.quotes,.plans,.bilingual__cols,.quotes--wall{grid-template-columns:1fr}
   .people,.people--big{grid-template-columns:1fr 1fr;gap:14px}
@@ -328,8 +362,8 @@ a:hover>.more svg,.more:hover svg{transform:translateX(3px)}
   .row{grid-template-columns:40px 1fr 20px}
   .visit__card{padding:26px}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
-.rwidget { margin-top: 32px; }
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important;animation:none!important}}
+.rwidget{margin:0 0 32px}
 
 /* hover pill on mega-menu links, Gunnell-style (Chris, Oct 19 2026) */
 .mega li a{padding:7px 10px;margin-inline:-10px;border-radius:8px;transition:background .15s,color .15s}
