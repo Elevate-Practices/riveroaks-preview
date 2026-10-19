@@ -130,9 +130,12 @@ a:hover>.more svg,.more:hover svg{transform:translateX(3px)}
   linear-gradient(180deg,rgba(10,30,22,.55) 0%,rgba(10,30,22,0) 26%),
   linear-gradient(0deg,rgba(10,30,22,.88) 0%,rgba(10,30,22,.55) 30%,rgba(10,30,22,0) 56%)}
 .hero__copy{padding-top:calc(var(--hdr) + 40px);padding-bottom:48px;color:#fff;max-width:1328px}
-.hero__copy .display{font-size:clamp(34px,4.2vw,56px);max-width:720px}
+.hero__copy{text-align:center}
+.hero__copy .display{font-size:clamp(30px,3.7vw,52px);max-width:none;margin-inline:auto}
+.hero__copy .btns,.hero__rating{justify-content:center}
+@media (min-width:1000px){.hero__copy .display,.hero__copy .lede{white-space:nowrap}}
 .hero__copy .display,.hero__copy .lede{color:#fff;text-shadow:0 1px 14px rgba(0,0,0,.3)}
-.hero__copy .lede{max-width:560px;margin-top:14px;font-size:17px}
+.hero__copy .lede{max-width:none;margin:14px auto 0;font-size:18px}
 .hero__copy .btns{margin-top:22px}
 .hero__copy .eyebrow{margin-bottom:10px}
 .hero .display{margin-top:4px}
@@ -157,14 +160,14 @@ body.home.hdr-solid{padding-top:0}
 .head__media .kb,.svcsplit__media .kb,.split__media .kb{border-radius:var(--r)}
 .person .kb{border-radius:var(--r)}
 
-.facts{background:#fff}
-.facts__in{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding-top:48px;padding-bottom:20px}
-.fact{padding:4px 24px;border-left:1px solid var(--line)}
+.facts{background:var(--green);color:#fff}
+.facts__in{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding-top:36px;padding-bottom:36px}
+.fact{padding:4px 24px;border-left:1px solid rgba(255,255,255,.28)}
 .fact:first-child{border-left:0;padding-left:0}
 .fact b{display:block;font-size:22px;font-weight:800;letter-spacing:-.02em}
-.fact span{display:block;color:var(--mute);font-size:15px;margin-top:2px}
-.fact a{color:var(--mute)}
-.fact a:hover{color:var(--green)}
+.fact span{display:block;color:rgba(255,255,255,.86);font-size:15px;margin-top:2px}
+.fact a{color:#fff}
+.fact a:hover{color:var(--mint-l)}
 
 .head{padding:72px 0 0;background:#fff}
 .head--img{padding-bottom:0}
